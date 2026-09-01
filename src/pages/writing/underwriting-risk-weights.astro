@@ -1,0 +1,126 @@
+---
+import '../../styles/global.css';
+import { contact } from '../../data/site';
+
+const title = 'Where my underwriting risk weights come from';
+const description =
+  'Every point value in my underwriting engine is round(28 × ln(a real mortality multiple)) — derived from 20,435 NHANES adults and 2,293 linked deaths, then checked against 59,381 real Prudential applicants.';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Tegh S. Bindra</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://teghbindra.com/writing/underwriting-risk-weights/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://teghbindra.com/og.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="site" href="/">TEGHBINDRA.COM</a>
+        <nav>
+          <a href="/#work">Work</a>
+          <a href="/#writing">Writing</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </header>
+
+      <article class="post">
+        <p class="eyebrow">Writing — August 2026</p>
+        <h1>{title}</h1>
+        <p class="standfirst">
+          The fastest way to make a risk demo is to invent the numbers. I didn't want to,
+          because a rule engine with made-up weights is just my taste wearing a lab coat.
+        </p>
+
+        <p>
+          My <a href="/#underwriting-copilot">underwriting copilot</a> scores life-insurance
+          applications with a weighted rule engine: current smoker adds 24 points, diabetes
+          adds 16, and so on. In most student projects those numbers come from nowhere. In
+          mine, every single point value is:
+        </p>
+
+        <pre class="formula">points = round(28 × ln(real all-cause-mortality multiple))</pre>
+
+        <p>
+          The log matters. Mortality risks multiply — a smoker with diabetes is roughly
+          2.37 × 1.80 times baseline risk — but points add. Logarithms turn multiplication
+          into addition, so the ratio between any two point values on the card is the ratio
+          between two real mortality figures. 28 is just a scaling constant that puts the
+          weights in a readable range.
+        </p>
+
+        <h2>Getting real mortality multiples</h2>
+        <p>
+          The multiples come from public-domain CDC data: NHANES 2007–2014 examination and
+          lab files joined to the NCHS Linked Mortality File — 20,435 US adults with 2,293
+          linked deaths over roughly a decade of follow-up. I fit an age- and sex-adjusted
+          logistic regression on measured risk factors. Measured is the key word: smoking
+          status comes from serum cotinine ≥ 10 ng/mL, not from a questionnaire, because
+          people lie on questionnaires and blood doesn't.
+        </p>
+        <p>
+          Where a published mega-study had a better estimate than my fit, I used it and
+          cited it: diabetes at 1.80× is the Emerging Risk Factors Collaboration
+          (NEJM 2011, 820k people); BMI ≥ 35 at 1.55× is the Prospective Studies
+          Collaboration (Lancet 2009, 900k). My own NHANES fit for cotinine-confirmed
+          smoking landed at 2.37×, which matches the published 2.2–2.3× range — a good
+          sign the pipeline wasn't broken.
+        </p>
+
+        <h2>Checking it against a real insurer</h2>
+        <p>
+          Derivation is half the job; the other half is finding out whether an actual
+          insurer would recognize these weights. I scored the 59,381 real applicants in the
+          Kaggle Prudential Life Insurance Assessment dataset using only the factors
+          Prudential exposes. My weights agree with the insurer's own 1–8 underwriting
+          rating at AUC 0.68, and the same method scores AUC 0.72–0.73 on real
+          applicants — squarely inside the range published actuarial models report.
+        </p>
+
+        <h2>What I refuse to claim</h2>
+        <p>
+          The portfolio the engine scores is synthetic, so headline metrics are tuned on
+          half of it and reported on the held-out half only. The straight-through
+          processing rate is 79.9% held-out, and it costs 52% auto-decline precision — about
+          half of auto-declines are applicants who weren't actually high risk. That trade
+          is printed on the model card instead of hidden, because an optimizer with no
+          guardrails "wins" by declining everyone.
+        </p>
+        <p>
+          The point of all this: when someone challenges a weight, the argument is about a
+          mortality study, not about me. You can disagree with the data. You can't
+          disagree with my taste, and that's exactly why taste wasn't allowed to set the
+          numbers.
+        </p>
+
+        <p class="post-foot">
+          Derivation and validation scripts are committed in
+          <a href="https://github.com/Phoenix275/underwriting-copilot">the repo</a>
+          (<code>src/derive_weights.py</code>, <code>src/prudential_validate.py</code>);
+          the raw NHANES/NCHS files are excluded because redistribution is restricted.
+          Questions or corrections: <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+        </p>
+      </article>
+
+      <footer id="contact">
+        <div class="colophon">
+          <span>© {new Date().getFullYear()} Tegh S. Bindra</span>
+          <span><a href="/">teghbindra.com</a></span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { contact, ledger, projects, experience, education, leadership } from '../data/site';
+import { contact, ledger, projects, writing, experience, education, leadership } from '../data/site';
 
 const description =
   'Tegh S. Bindra — builder and researcher from Sugar Land, TX. Shipped an AI underwriting workbench, published at MIT URTC, Codeforces Master (2150).';
@@ -30,6 +30,8 @@ const personSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://teghbindra.com/" />
+    <meta property="og:image" content="https://teghbindra.com/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,6 +46,7 @@ const personSchema = {
         <a class="site" href="/">TEGHBINDRA.COM</a>
         <nav>
           <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
           <a href="#experience">Experience</a>
           <a href="#leadership">Leadership</a>
           <a href="#contact">Contact</a>
@@ -125,6 +128,24 @@ const personSchema = {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="writing">
+        <div class="section-grid">
+          <div class="section-label">Writing</div>
+          <ul class="writing-list">
+            {writing.map((w) => (
+              <li>
+                <div class="row">
+                  <a class="title" href={w.href}>{w.title}</a>
+                  <span class="leader" aria-hidden="true"></span>
+                  <span class="date">{w.date}</span>
+                </div>
+                <p class="blurb">{w.blurb}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

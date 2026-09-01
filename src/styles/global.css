@@ -190,6 +190,36 @@ footer .pitch { color: var(--ink-soft); max-width: var(--measure); }
 .lights .a { background: var(--amber); }
 .lights .r { background: var(--red); }
 
+/* ---------- article ---------- */
+.post { max-width: var(--measure); margin: 0 auto; padding: clamp(2.5rem, 8vh, 5rem) 0 3rem; }
+.post h1 {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem); line-height: 1.12; margin-bottom: 1.2rem;
+  text-wrap: balance;
+}
+.post .standfirst { font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--ink-soft); margin-bottom: 1.8rem; }
+.post h2 {
+  font-family: var(--serif); font-weight: 600; font-size: 1.35rem;
+  margin: 2.2rem 0 0.7rem;
+}
+.post p { margin-bottom: 1.1rem; }
+.post code { font-family: var(--mono); font-size: 0.85em; background: var(--card); border: 1px solid var(--line); padding: 0.05em 0.3em; }
+.formula {
+  font-family: var(--mono); font-size: 0.9rem; background: var(--card);
+  border: 1px solid var(--ink); box-shadow: 3px 3px 0 var(--line);
+  padding: 0.9rem 1.1rem; margin: 1.4rem 0; overflow-x: auto;
+}
+.post-foot { border-top: 1px dotted var(--line); padding-top: 1.1rem; font-size: 0.92rem; color: var(--ink-soft); }
+
+/* ---------- writing list ---------- */
+.writing-list { list-style: none; padding: 0; }
+.writing-list li { padding: 1rem 0; }
+.writing-list .row { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+.writing-list .title { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; text-decoration-color: var(--line); }
+.writing-list .leader { flex: 1; min-width: 2rem; border-bottom: 1px dotted var(--line); transform: translateY(-0.3em); }
+.writing-list .date { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); white-space: nowrap; }
+.writing-list .blurb { color: var(--ink-soft); max-width: var(--measure); margin-top: 0.3rem; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 880px) {
   .hero { grid-template-columns: 1fr; }

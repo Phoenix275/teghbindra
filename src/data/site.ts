@@ -101,6 +101,16 @@ export const projects: Project[] = [
   },
 ];
 
+export const writing = [
+  {
+    title: 'Where my underwriting risk weights come from',
+    href: '/writing/underwriting-risk-weights/',
+    date: 'Aug 2026',
+    blurb:
+      'Every point value in my rule engine is round(28 × ln(a real mortality multiple)) — derived from 20,435 NHANES adults with linked deaths, then checked against 59,381 real Prudential applicants.',
+  },
+];
+
 export const experience = [
   {
     org: 'DLM Fund @ Saheb Sabharwal Office',
