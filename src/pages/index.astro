@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { contact, ledger, projects, writing, experience, education, leadership } from '../data/site';
+import { contact, projects, writing, experience, education, leadership } from '../data/site';
 
 const description =
   'Tegh S. Bindra — builder and researcher from Sugar Land, TX. Shipped an AI underwriting workbench, published at MIT URTC, Codeforces Master (2150).';
@@ -43,7 +43,7 @@ const personSchema = {
   <body>
     <div class="wrap">
       <header class="top">
-        <a class="site" href="/">TEGHBINDRA.COM</a>
+        <a class="site" href="/">Tegh S.&nbsp;Bindra</a>
         <nav>
           <a href="#work">Work</a>
           <a href="#writing">Writing</a>
@@ -55,52 +55,29 @@ const personSchema = {
       </header>
 
       <div class="hero">
-        <div>
-          <p class="eyebrow">Case file — Sugar Land, TX</p>
-          <h1>I build systems that turn messy data into decisions.</h1>
-          <p class="intro">
-            I'm Tegh — I've shipped a <strong>live AI underwriting workbench</strong> for a
-            Tech Mahindra internship, published <strong>clinical-NLP research at MIT URTC</strong>,
-            and co-authored a <strong>reward-debiasing system</strong> that cut model scoring bias
-            by ~12%. Currently: economics at UT San Antonio → UT Austin (CAP), Class of 2030.
-          </p>
-          <p class="where">
-            <span>{contact.location}</span><span class="dot">·</span>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a><span class="dot">·</span>
-            <a href={contact.github}>GitHub</a><span class="dot">·</span>
-            <a href={contact.linkedin}>LinkedIn</a>
-          </p>
-        </div>
-
-        <div>
-          <div class="ledger" aria-label="Case summary">
-            <div class="ledger-head">
-              <span>Case summary</span>
-              <span class="ref">REF TSB-2030</span>
-            </div>
-            <ul class="ledger-rows">
-              {ledger.map((row) => (
-                <li>
-                  <span class="k">{row.label}</span>
-                  <span class="leader" aria-hidden="true"></span>
-                  <span class="v">
-                    {row.href ? <a href={row.href}>{row.value}</a> : row.value}
-                    <small>{row.note}</small>
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div class="verdict">
-              <span class="k">Status</span>
-              <span class="leader" aria-hidden="true"></span>
-              <span class="v"><span class="lamp" aria-hidden="true"></span>OPEN TO INTERNSHIPS</span>
-            </div>
-          </div>
-          <p class="ledger-note">
-            Card format borrowed from my underwriting engine's decision output.
-          </p>
-        </div>
+        <p class="eyebrow">Sugar Land, TX · UT Austin CAP '30</p>
+        <h1>I build systems that turn messy data into decisions.</h1>
+        <p class="intro">
+          I'm Tegh — I've shipped a <strong>live AI underwriting workbench</strong> for a
+          Tech Mahindra internship, published <strong>clinical-NLP research at MIT URTC</strong>,
+          and co-authored a <strong>reward-debiasing system</strong> that cut model scoring bias
+          by ~12%.
+        </p>
+        <p class="where">
+          <a href={`mailto:${contact.email}`}>{contact.email}</a><span class="dot">·</span>
+          <a href={contact.github}>GitHub</a><span class="dot">·</span>
+          <a href={contact.linkedin}>LinkedIn</a><span class="dot">·</span>
+          <a href={contact.resume}>Résumé</a>
+        </p>
       </div>
+
+      <ul class="proof" aria-label="Highlights">
+        <li>Codeforces Master · 2150</li>
+        <li>Published — MIT URTC 2024</li>
+        <li>Harvard HSRC — 2nd of 18</li>
+        <li>Eagle Scout</li>
+        <li class="open"><span class="lamp" aria-hidden="true"></span>Open to internships</li>
+      </ul>
 
       <section id="work">
         <div class="section-grid">
@@ -209,7 +186,7 @@ const personSchema = {
         </div>
         <div class="colophon">
           <span>© {new Date().getFullYear()} Tegh S. Bindra — hand-built with Astro, no template.</span>
-          <span class="lights" title="approve · refer · decline"><i class="g"></i><i class="a"></i><i class="r"></i></span>
+          <span>{contact.location}</span>
         </div>
       </footer>
     </div>

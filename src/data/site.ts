@@ -7,15 +7,6 @@ export const contact = {
   resume: '/resume.pdf',
 };
 
-// The hero ledger — every value here is real and verifiable.
-export const ledger = [
-  { label: 'Codeforces', value: 'Master · 2150', note: 'top 3% worldwide' },
-  { label: 'Research', value: 'Published — MIT URTC 2024', note: 'first author' },
-  { label: 'Shipped', value: 'underwriting-copilot.pages.dev', note: 'live', href: 'https://underwriting-copilot.pages.dev' },
-  { label: 'Harvard HSRC', value: '2nd of 18 teams', note: 'technical lead' },
-  { label: 'Scouting', value: 'Eagle Scout', note: 'top ~5% nationally' },
-];
-
 export type Project = {
   slug: string;
   name: string;
